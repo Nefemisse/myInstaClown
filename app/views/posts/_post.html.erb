@@ -10,6 +10,13 @@
   <p>
     <%= post.keywords %>
   </p>
+    <%
+=begin%>
+ <p>
+    <%= post.user.email %>
+  </p> 
+<%
+=end%>
   <p>
     <%= link_to "", post, class: "post-link" %>
   </p>
