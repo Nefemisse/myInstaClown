@@ -106,6 +106,7 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.13.0)
+    followability (1.1.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -324,6 +325,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9, >= 4.9.4)
+  followability (~> 1.1)
   importmap-rails
   jbuilder
   puma (>= 5.0)

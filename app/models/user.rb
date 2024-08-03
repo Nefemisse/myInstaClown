@@ -4,10 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  followability
+
   has_many :posts
   has_many :likes
   has_many :comments
   has_one_attached :avatar
+
+  def unfollow
+    followerable_relationships.where(followable_id: user.id)
+    destroy_all
+  end
 
   before_create :randomize_id
   private
