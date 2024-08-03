@@ -13,14 +13,11 @@
   <p>
     <%= post.keywords %>
   </p>
-    <%
-=begin%>
- <p>
-    <%= post.user.email %>
-  </p> 
-<%
-=end%>
+
   <p>
     <%= link_to "", post, class: "post-link" %>
   </p>
 </div>
+  <p>
+    <%= link_to post.user.email, post.user%>
+  </p>
