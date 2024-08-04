@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag("post") %>
-  <p style="color: green"><%= notice %></p>
+<p style="color: green"><%= notice %></p>
 <div class="row">
-  <div class="red">
+  <div>
     <% if user_signed_in? %>
       <% current_user.follow_requests.each do |request| %>
         <%= request.followerable.email %> Wants to follow you

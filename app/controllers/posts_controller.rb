@@ -1,16 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-
   before_action :authenticate_user!, except: [ :index, :show ]
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
 
   def show
     @comment = @post.comments.build
+    # @userComment = User.find(:all, include: [ comments: :posts ],
+    # conditions: [ "comments.user_id = ?", User.id ])
   end
 
   def myPosts
