@@ -5,7 +5,7 @@
     <% end %>
     <p><%= post.description %></p>
     <p><%= post.keywords %></p>
-    <p><%= link_to "", post.user, class: "post-link" %></p>
+    <p><%= link_to "", post, class: "post-link" %></p>
 </div>
     <% if user_signed_in? %>
         <% like = current_user.likes.find_by(post: post) %>
@@ -16,4 +16,4 @@
         <% end %>
     <% end %>
     <p><%= post.likes.count %> Likes</p>
-  <p><%= link_to post.user.email, post.user%></p>
+  <p><%= link_to post.user.username, post.user%></p>
