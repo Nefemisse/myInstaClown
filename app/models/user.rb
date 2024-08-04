@@ -11,9 +11,8 @@ class User < ApplicationRecord
   has_many :comments
   has_one_attached :avatar
 
-  def unfollow
-    followerable_relationships.where(followable_id: user.id)
-    destroy_all
+  def unfollow(user)
+    followerable_relationships.where(followable_id: user.id).destroy_all
   end
 
   def self.ransackable_attributes(auth_object = nil)

@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user
   before_action :authenticate_user!
   def show
-    @user = User.find { params[:id] }
+    @user = User.find(params[:id])
   end
 
   def follow
     current_user.send_follow_request_to(@user)
     # Comment the lane below for don't accept automaticly the follow request
-    @user.accept_follow_request_of(current_user)
+    # @user.accept_follow_request_of(current_user)
     redirect_to users_path(@user)
   end
 

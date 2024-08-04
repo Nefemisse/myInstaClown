@@ -1,33 +1,19 @@
 <div id="<%= dom_id post %>" class="text-center post-container col-6 m-auto">
-  <% if user_signed_in? %>
-    <% like = current_user.likes.find_by(post: post) %>
-    <% if like.nil? %>
-      <%= button_to "like", likes_path, params: { like: { post_id: post.id}}, method: :post %>
-    <% else %>
-      <%= button_to "like", like_path(like), method: :delete %>
+    <p><%= post.title %></p>
+    <% post.images.each do |image| %>
+        <%= image_tag(image, style: "object-fit-cover; width: 300px; heigth: 600px") %>
     <% end %>
-  <% end %>
-  <p><%= post.likes.count %> Likes</p>
-  <p>
-    <%= post.title %>
-  </p>
-
-  <% post.images.each do |image| %>
-    <%= image_tag(image, style: "object-fit-cover; width: 300px; heigth: 600px") %>
-  <% end %>
-
-  <p>
-    <%#= post.description %>
-  </p>
-
-  <p>
-    <%= post.keywords %>
-  </p>
-
-  <p>
-    <%#= link_to "", post, class: "post-link" %>
-  </p>
+    <p><%= post.description %></p>
+    <p><%= post.keywords %></p>
+    <p><%= link_to "", post.user, class: "post-link" %></p>
 </div>
-  <p>
-    <%= link_to post.user.email, post.user%>
-  </p>
+    <% if user_signed_in? %>
+        <% like = current_user.likes.find_by(post: post) %>
+        <% if like.nil? %>
+            <%= button_to "like", likes_path, params: { like: { post_id: post.id}}, method: :post %>
+        <% else %>
+            <%= button_to "like", like_path(like), method: :delete %>
+        <% end %>
+    <% end %>
+    <p><%= post.likes.count %> Likes</p>
+  <p><%= link_to post.user.email, post.user%></p>
