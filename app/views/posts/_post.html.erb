@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>" class="text-center post-container col-6 m-auto">
+<div id="<%= dom_id post %>" class="text-center post-container col-6 m-auto mb-2" style="padding: 1% 5% 0 5%">
     <p><%= post.title %></p>
     <% post.images.each do |image| %>
         <%= image_tag(image, style: "object-fit-cover; width: 300px; heigth: 600px") %>

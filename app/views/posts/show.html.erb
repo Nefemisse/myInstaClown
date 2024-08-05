@@ -1,7 +1,6 @@
 <div class="text-center col-12 m-auto">
     <p style="color: green"><%= notice %></p>
     <%= render @post %>
-    <%= link_to "Back to posts", posts_path %>
     <% if user_signed_in? %>
         <% if current_user.id == @post.user.id %>
             <div>
@@ -10,12 +9,24 @@
             </div>
         <% end %>
     <% end %>
-    <%= render "comments/form", comment: @comment %>
+    <% if user_signed_in? %>
+        <%= render "comments/form", comment: @comment %>
+    <% end %>
     <%- @post.comments.each do |comment| %>
         <% if comment.text? %>
-        <div class="d-flex justify-content-center">
-            <b style="max-width: 290px"><%= comment.text %></b> 
-        </div>
+            <div class="d-flex justify-content-center">
+                <b style="max-width: 290px"><%= comment.text %></b> 
+            </div>
+        <% else %>
+            <% if !@post.comments[0].text? %>
+                <% if user_signed_in? %>
+                    No comments yet<br/>
+                    <b style="max-width: 290px">Be the first to comment</b> 
+                <% else %>
+                    No comments yet<br/>
+                    <a href="/users/sign_in"><b style="max-width: 290px">Be the first to comment</b></a>
+                <% end %>
+            <% end %>
         <% end %>
     <% end %>
 </div>
