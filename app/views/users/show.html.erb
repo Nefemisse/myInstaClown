@@ -1,17 +1,37 @@
 <div class="row">
-    <div class="col-12 text-center p-3" style="background-color: #f2f2f2">
-        <h1><%= @user.username %></h1>
-        <h4><%= @user.email %></h4>
-        <h1><%= @user.bio %></h1>
-        <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar, style:"width: 50px; heigth: 50px" %>
-        <% end %>
-        <% if current_user.following?(@user) %>
-            <%= button_to "Unfollow", unfollow_path(@user) %>
-        <% elsif current_user.sent_follow_request_to?(@user) %>
-            <%= button_to "Cancel follow request", cancel_path(@user) %>
-        <% else %>
-            <%= button_to "Follow", follow_path(@user) %>
-        <% end %>
+    <div class="d-flex col-12 text-center p-3 align-item-center" style="background-color: #f2f2f2; flex-direction: column; align-items: center;">
+        <div class="d-flex pb-5 border-bottom border-2 border-dark" style="width: 60%; flex-direction: column; align-items: center;">
+            <h3><%= @user.username %></h3>
+            <h4><%= @user.email %></h4>
+            <h4><%= @user.bio %></h4>
+            <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar, style:"width: 60px; heigth: 60px" %>
+            <% end %>
+            <% if current_user.id != @user.id %>
+                <% if current_user.following?(@user) %>
+                    <%= button_to "Unfollow", unfollow_path(@user) %>
+                <% elsif current_user.sent_follow_request_to?(@user) %>
+                    <%= button_to "Cancel follow request", cancel_path(@user) %>
+                <% else %>
+                    <%= button_to "Follow", follow_path(@user) %>
+                <% end %>
+            <% end %>
+        </div>
+        <br/>
+        <br/>
+        <div class="d-flex justify-content-around">
+            <div>
+                <span class="border-bottom border-dark border-1">Followers</span>
+                <% @user.followers.each do |follower| %>
+                    <%= render follower %>
+                <% end %>
+            </div>
+            <div>
+                <span class="border-bottom border-dark border-1">Followings</span>
+                <% @user.following.each do |following| %>
+                    <%= render following %>
+                <% end %>
+            </div>
+        </div>
     </div>
 </div>
