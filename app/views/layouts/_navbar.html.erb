@@ -17,7 +17,7 @@
                     <li class="nav-item"><%= link_to "View my profile", current_user, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "Edit Account", edit_user_registration_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "View my Posts", posts_myPosts_path, class: "nav-link" %></li>
-                    <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
                 <% else %>
                     <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "Log in", new_user_session_path, class: "nav-link" %></li>
@@ -26,8 +26,8 @@
             <% if user_signed_in? %>
                 <% if current_user.avatar.attached? %>
                     <a href="/"><%= image_tag current_user.avatar, style:"width: 60px; heigth: 60px" %></a>
-                <% end %> 
-            <% end %> 
+                <% end %>
+            <% end %>
         </div>
     </div>
 </nav>
